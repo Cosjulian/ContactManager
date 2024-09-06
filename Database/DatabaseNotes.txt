@@ -1,0 +1,64 @@
+Database Name:
+contact_manager
+
+Tables in contact_manager:
+Contacts
+Users
+
+Columns in Contacts:
++--------+-------------+------+-----+---------+----------------+
+| Field  | Type        | Null | Key | Default | Extra          |
++--------+-------------+------+-----+---------+----------------+
+| ID     | int(11)     | NO   | PRI | NULL    | auto_increment |
+| Name   | varchar(50) | NO   |     |         |                |
+| Phone  | varchar(50) | NO   |     |         |                |
+| Email  | varchar(50) | NO   |     |         |                |
+| UserID | int(11)     | NO   |     | 0       |                |
++--------+-------------+------+-----+---------+----------------+
+
+Data in Contacts:
++----+----------------+--------------+---------------------------+--------+
+| ID | Name           | Phone        | Email                     | UserID |
++----+----------------+--------------+---------------------------+--------+
+|  1 | Father Martin  | 805-302-2203 | fathermartin@company.com  |      2 |
+|  2 | Mother Martin  | 805-302-2204 | mothermartin@company.com  |      2 |
+|  3 | Sister Martin  | 805-302-2205 | sistermartin@company.com  |      2 |
+|  4 | Brother Martin | 805-302-2206 | brothermartin@company.com |      2 |
+|  5 | Father Gerber  | 407-685-9980 | fathergerber@company.com  |      1 |
+|  6 | Mother Gerber  | 407-685-9981 | mothergerber@company.com  |      1 |
+|  7 | Sister Gerber  | 407-685-9982 | sistergerber@company.com  |      1 |
+|  8 | Brother Gerber | 407-685-9983 | brothergerber@company.com |      1 |
+|  9 | Father Alen    | 954-802-8545 | fatheralen@company.com    |      3 |
+| 10 | Mother Alen    | 954-802-8546 | motheralen@company.com    |      3 |
+| 11 | Sister Alen    | 954-802-8547 | sisteralen@company.com    |      3 |
+| 12 | Brother Alen   | 954-802-8548 | brotheralen@company.com   |      3 |
+| 13 | Father Katz    | 954-348-8266 | fatherkatz@company.com    |      4 |
+| 14 | Mother Katz    | 954-348-8267 | motherkatz@company.com    |      4 |
+| 15 | Sister Katz    | 954-348-8268 | sisterkatz@company.com    |      4 |
+| 16 | Brother Katz   | 954-348-8269 | brotherkatz@company.com   |      4 |
++----+----------------+--------------+---------------------------+--------+
+
+Columns in Users:
++------------------+-------------+------+-----+---------------------+----------------+
+| Field            | Type        | Null | Key | Default             | Extra          |
++------------------+-------------+------+-----+---------------------+----------------+
+| ID               | int(11)     | NO   | PRI | NULL                | auto_increment |
+| DateCreated      | datetime    | NO   |     | current_timestamp() |                |
+| DateLastLoggedIn | datetime    | NO   |     | current_timestamp() |                |
+| FirstName        | varchar(50) | NO   |     |                     |                |
+| LastName         | varchar(50) | NO   |     |                     |                |
+| Login            | varchar(50) | NO   |     |                     |                |
+| Password         | varchar(50) | NO   |     |                     |                |
++------------------+-------------+------+-----+---------------------+----------------+
+
+Data in Users:
++----+---------------------+---------------------+-----------+----------+-------+----------+
+| ID | DateCreated         | DateLastLoggedIn    | FirstName | LastName | Login | Password |
++----+---------------------+---------------------+-----------+----------+-------+----------+
+|  1 | 2024-09-05 22:09:57 | 2024-09-05 22:09:57 | Matt      | Gerber   | MattG | COP4331  |
+|  2 | 2024-09-05 22:12:02 | 2024-09-05 22:12:02 | Gabriel   | Martin   | GabeM | Nothing  |
+|  3 | 2024-09-06 01:33:55 | 2024-09-06 01:33:55 | Alex      | Alen     | AlexA | BigGuy12 |
+|  4 | 2024-09-06 01:34:50 | 2024-09-06 01:34:50 | Blake     | Katz     | BKatz | cats     |
++----+---------------------+---------------------+-----------+----------+-------+----------+
+
+The web server has a user 'Group24WebServer' identified by 'Group24Server' to access the database;
