@@ -32,6 +32,14 @@ $('#loginButton').click(function checkCredentials(){
      
 });
 
+$('#searchButton').click(function moveToSearch(){
+     window.location.href = "search_menu.html";
+});
+
+$('#addButton').click(function moveToAdd(){
+     window.location.href = "add_menu.html";
+});
+
 //checks if all boxes are filled out
 $('#signUpButton').click(function checkCredentials(){
 
