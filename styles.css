@@ -1,0 +1,129 @@
+/*
+.name represents a CLASS
+#name represents an ID
+*/
+
+#body{
+     background-color: #3b4fa8;
+}
+
+#title{
+     text-align: center;
+     font-size: 40px;
+     width: 100%;
+     margin-top: 2%;
+     color: white;
+
+}
+
+#loginBox{
+     width: 70%;
+     border-radius: 10px;
+     margin-left: 15%;
+     padding: 25px;
+     background-color: #e3e3e3;
+}
+
+#signUpBox{
+     width: 35%;
+     border-radius: 25px;
+     margin-left: 33%;
+     margin-top: 3%;
+     padding: 25px 25px 5px 25px;
+     background-color: #e3e3e3;
+}
+
+#optionBox{
+	 width: 70%;
+	 border-radius: 10px;
+	 margin-left: 15%;
+	 padding: 25px;
+	 background-color: #e3e3e3;
+}
+
+#searchBox{
+	 width: 70%;
+	 border-radius: 10px;
+	 margin-left: 15%;
+	 padding: 25px;
+	 background-color: #e3e3e3;
+}
+
+#addBox{
+	 width: 70%;
+	 border-radius: 10px;
+	 margin-left: 15%;
+	 padding: 25px;
+	 background-color: #e3e3e3;
+}
+
+#errorBox{
+     width:fit-content;
+     padding: 3%;
+     margin-bottom: 3%;
+     border-radius: 10px;
+     color: white;
+     display: none;
+}
+
+#errorBoxLogin{
+     width:fit-content;
+     padding: 1%;
+     margin-bottom: 1%;
+     border-radius: 10px;
+     color: white;
+     display: none;
+
+}
+
+#loginButton{
+     margin-left: 35%;
+     width: 30%;
+}
+
+#signUpButton{
+     margin-left: 35%;
+     width: 30%;
+}
+
+#searchButton{
+     margin-left: 35%;
+     width: 30%;
+}
+
+#addButton{
+     margin-left: 35%;
+     margin-top: 1%;
+     width: 30%;
+}
+
+#logoutButton{
+     margin-left: 35%;
+     margin-top: 1%;
+     width: 30%;
+}
+
+#updateButton{
+     margin-left: 35%;
+     margin-top: 1%;
+     width: 30%;
+}
+
+#deleteButton{
+     margin-left: 35%;
+     margin-top: 1%;
+     width: 30%;
+}
+
+#searchCmdButton{
+     margin-left: 35%;
+     margin-top: 1%;
+     width: 30%;
+}	
+
+#addCmdButton{
+     margin-left: 35%;
+     margin-top: 1%;
+     width: 30%;
+}
+
