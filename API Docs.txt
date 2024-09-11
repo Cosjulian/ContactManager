@@ -1,0 +1,30 @@
+in the html files on the buttons there is a function call for example: 
+"onclick = "DoLogin();" 
+
+This makes a call to the code.js file that has the function. 
+Im going to focus on DoLogin() for this document so you can see the connections in the files.
+
+doLogin will take the username and password from index.html by taking the value stored at the elementID username and password respectively,
+
+it will then create a key:value pair that will get the stringify function called on it that will turn the key pair into a JSON object that can be read by the .php files.
+
+the doLogin function will then create the URL so it knows where to connect to, it will take the url that is currently in use (contactmanager.smallgroupproject24.xyz) then add the file that the .php files belong to (/LAMPAPI) then the specific .php file ("/Login.") then it will add the .php ending so it knows which file to go to. 
+(you can actually go to contactmanager.smallgroupproject.xyz/LAMPAPI/Login.php but nothing will come up except a white background because it does not print any info.)
+
+Login will then make a XMLHttpRequest(); this will allow the function to open the selected file and run its contents
+
+login will make a post request to the URL and tell the program what type of data it accepts in this case it is application/json
+
+it will then check to see if the state changes for the request, if it gets to state 4 which means that it has successfully completed the request and has gotten a return code of 200 which means that the .php file has finished running then it will send the user to the main menu and finally send the payload.
+
+Login.php will access the database by logging into the database using the username and password associated with the database.
+
+Then it will make a statement similar to how we can ask the database for information "SELECT ID,FirstName,LastName FROM Users WHERE Login=? AND Password=?" 
+
+The ? marks are blank spaces to be filled in later. Login.php will then get the information passed in from the code.js function and find the login and password information and replace the ? marks with that information.
+$stmt->bind_param("ss", $inData["login"], $inData["password"]);
+The "ss" tells the program what data type the information is in this case s means string 
+
+it will then execute the statement and get the result
+if login.php finds a row with the results that were returned it will return the name and id of that user so the rest of the program knows which user we are dealing with.
+
