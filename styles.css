@@ -115,6 +115,10 @@
      width: 30%;
 }
 
+#searchTable{
+     display: none;
+}
+
 #searchCmdButton{
      margin-left: 35%;
      margin-top: 1%;
