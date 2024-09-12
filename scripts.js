@@ -4,34 +4,25 @@ const extension = 'php';
 //insert javascript here for website
 
 
-
-
-
-
-
 //grabs the input from the username and password text boxes
 $('#loginButton').click(function checkCredentials(){
 
      var login = document.getElementById("username").value;
-	 var password = document.getElementById("password").value;
+	var password = document.getElementById("password").value;
      
      if(login === '' || password === '' ){
           $('#errorBoxLogin').html("Error: please fill in all boxes");
           $('#errorBoxLogin').show();
-     //the (else if) need to check to see if a user exists with the same login and password.
-     //if not run code otherwise move to else
-     /*
-     }else if(!(login === 'MattG') && !(password === 'COP4331')){
-          $('#errorBoxLogin').html("Error: Username and Password incorrect");
-          $('#errorBoxLogin').show();
-     */
      }else{
           //add function to login to contact manager
-		  window.location.href = "main_menu.html";
+	     //window.location.href = "main_menu.html";
+          $('#errorBoxLogin').html("Error: Username and Password incorrect");
+          $('#errorBoxLogin').show();
      }
      
 });
 
+//these fix the extending buttons in the main_menu.html
 $('#searchButton').click(function moveToSearch(){
      window.location.href = "search_menu.html";
 });
@@ -39,6 +30,12 @@ $('#searchButton').click(function moveToSearch(){
 $('#addButton').click(function moveToAdd(){
      window.location.href = "add_menu.html";
 });
+
+//shows the table after pressing the find button in "search_menu.html"
+$('#searchCmdButton').click(function(){
+     $('#searchTable').show();
+});
+
 
 //checks if all boxes are filled out
 $('#signUpButton').click(function checkCredentials(){
@@ -81,3 +78,4 @@ $('#check-show').click(function(){
           $('#password-2').prop('type', 'password');
      }
  });
+
