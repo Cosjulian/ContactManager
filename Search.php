@@ -12,9 +12,9 @@
 	} 
 	else
 	{
-		$stmt = $conn->prepare("SELECT * from Contacts where Name like ? and UserID=?");
+		$stmt = $conn->prepare("SELECT Name from Contacts where Name like ? and UserID=?");
 		$contactName = "%" . $inData["search"] . "%";
-		$stmt->bind_param("ss", $contactName, $inData["userId"]);
+		$stmt->bind_param("si", $contactName, $inData["userId"]);
 		$stmt->execute();
 		
 		$result = $stmt->get_result();
@@ -62,6 +62,7 @@
 	function returnWithInfo( $searchResults )
 	{
 		$retValue = '{"results":[' . $searchResults . '],"error":""}';
+		echo $retValue;
 		sendResultInfoAsJson( $retValue );
 	}
 	

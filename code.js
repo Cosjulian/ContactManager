@@ -55,23 +55,31 @@ function saveCookie(){
 }
 
 function doSearch() {
-    let name = document.getElementById("firstname");
+    let name = document.getElementById("firstname").value;
 
-    let tmp={name:name};
+    let tmp={name:name, userId:1};
+    console.log(userID);
 
-    let jsonPaylod = JSON.stringify(tmp);
+    let jsonPayload = JSON.stringify(tmp);
 
-    let url = urlBase + 'Search.' + extension;
+    let url = urlBase + '/Search.' + extension;
     let xhr = new XMLHttpRequest();
-    xhr.open("GET", url, true);
+    xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
     try {
-        xhr.onreadystatechange = () => {
+        xhr.onreadystatechange = function(){
+            console.log(77);
             if(this.readyState == 4 && this.status == 200) {
                 let jsonObject = JSON.parse(xhr.responseText);
+                console.log(jsonObject);
                 return jsonObject;
             }
-        }
+        };
+        console.log(jsonPayload);
+        xhr.send(jsonPayload);
+    }
+    catch {
+
     }
 }
 
