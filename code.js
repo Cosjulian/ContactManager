@@ -54,6 +54,27 @@ function saveCookie(){
     document.cookie = "firstName=" + firstName + ",lastName=" + lastName + ",userId=" + userID + ";expires=" + date.toGMTString();
 }
 
+function doSearch() {
+    let name = document.getElementById("firstname");
+
+    let tmp={name:name};
+
+    let jsonPaylod = JSON.stringify(tmp);
+
+    let url = urlBase + 'Search.' + extension;
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    try {
+        xhr.onreadystatechange = () => {
+            if(this.readyState == 4 && this.status == 200) {
+                let jsonObject = JSON.parse(xhr.responseText);
+                return jsonObject;
+            }
+        }
+    }
+}
+
 function doSignUp() {
     userID = 0;
     let firstName = document.getElementById("firstName").value;
