@@ -101,8 +101,6 @@
      
 }
 
-
-
 #addButton{
      margin-left: 35%;
      margin-top: 1%;
@@ -115,16 +113,8 @@
      width: 30%;
 }
 
-#updateButton{
-     margin-left: 35%;
-     margin-top: 1%;
-     width: 30%;
-}
-
-#deleteButton{
-     margin-left: 35%;
-     margin-top: 1%;
-     width: 30%;
+#editButton{
+	 width: 70%
 }
 
 #searchTable{
