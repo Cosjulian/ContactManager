@@ -57,6 +57,14 @@
 	 background-color: #e3e3e3;
 }
 
+#editBox{
+     width: 70%;
+     border-radius: 10px;
+     margin-left: 15%;
+     padding: 25px;
+     background-color: #e3e3e3;
+}
+
 #errorBox{
      width:fit-content;
      padding: 3%;
@@ -67,6 +75,15 @@
 }
 
 #errorBoxAdd{
+     width:fit-content;
+     padding: 1%;
+     margin-bottom: 10px;
+     border-radius: 10px;
+     color: white;
+     display: none;
+}
+
+#errorBoxEdit{
      width:fit-content;
      padding: 1%;
      margin-bottom: 10px;
@@ -114,7 +131,7 @@
 }
 
 #editButton{
-	 width: 70%
+	width: 70%
 }
 
 #searchTable{
@@ -122,6 +139,15 @@
 }
 
 #contactAddSuccess{
+     width:fit-content;
+     padding: 1%;
+     margin-bottom: 10px;
+     border-radius: 10px;
+     color: white;
+     display: none;
+}
+
+#contactEditSuccess{
      width:fit-content;
      padding: 1%;
      margin-bottom: 10px;
@@ -142,3 +168,8 @@
      width: 30%;
 }
 
+#editCmdButton{
+     margin-left: 35%;
+     margin-top: 1%;
+     width: 30%;
+}
