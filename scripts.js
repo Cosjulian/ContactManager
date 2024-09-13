@@ -1,5 +1,5 @@
-const urlBase = '';
-const extension = 'php'; 
+//const urlBase = '';
+//const extension = 'php'; 
 
 //insert javascript here for website
 
@@ -31,6 +31,7 @@ $('#editButton').click(function(){
 	//implement edit functionality
      window.location.href = "edit_menu.html";
 });
+
 $('#deleteButton').click(function(){
      if (confirm("Do you want to delete")){
 		 //implement delete functionality
@@ -64,6 +65,23 @@ $('#addCmdButton').click(function(){
           $('#contactAddSuccess').html("Contact has been added");
           $('#contactAddSuccess').show();
           $('#errorBoxAdd').hide();
+
+     }
+     
+});
+
+$('#editCmdButton').click(function(){
+     var name = document.getElementById("editName").value;
+     var phone = document.getElementById("editPhone").value;
+     var email = document.getElementById("editEmail").value;
+     if(name === '' || phone === '' || email === ''){
+          $('#errorBoxEdit').html("Error: please fill in all boxes");
+          $('#errorBoxEdit').show();
+          $('#contactEditSuccess').hide();
+     }else{
+          $('#contactEditSuccess').html("Contact has been updated");
+          $('#contactEditSuccess').show();
+          $('#errorBoxEdit').hide();
 
      }
      
