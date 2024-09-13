@@ -27,6 +27,15 @@ $('#searchButton').click(function moveToSearch(){
      window.location.href = "search_menu.html";
 });
 
+$('#editButton').click(function(){
+	//implement edit functionality
+     window.location.href = "edit_menu.html";
+});
+$('#deleteButton').click(function(){
+	//implement delete functionality
+     window.location.href = "delete_menu.html";
+});
+
 $('#addButton').click(function moveToAdd(){
      window.location.href = "add_menu.html";
 });
