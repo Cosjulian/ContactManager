@@ -36,6 +36,38 @@ $('#searchCmdButton').click(function(){
      $('#searchTable').show();
 });
 
+$('#addCmdButton').click(function(){
+     var name = document.getElementById("addName").value;
+     var phone = document.getElementById("addPhone").value;
+     var email = document.getElementById("addEmail").value;
+     if(name === '' || phone === '' || email === ''){
+          $('#errorBoxAdd').html("Error: please fill in all boxes");
+          $('#errorBoxAdd').show();
+          $('#contactAddSuccess').hide();
+     }else{
+          document.getElementById("addName").value = "";
+          document.getElementById("addPhone").value = "";
+          document.getElementById("addEmail").value = "";
+          $('#contactAddSuccess').html("Contact has been added");
+          $('#contactAddSuccess').show();
+          $('#errorBoxAdd').hide();
+
+     }
+     
+});
+
+//hides the success notification after user starts to input new contact info
+$('#addName').on("input", function(){
+     $('#contactAddSuccess').hide();
+});
+
+$('#addPhone').on("input", function(){
+     $('#contactAddSuccess').hide();
+});
+
+$('#addEmail').on("input", function(){
+     $('#contactAddSuccess').hide();
+});
 
 //checks if all boxes are filled out
 $('#signUpButton').click(function checkCredentials(){
