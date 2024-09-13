@@ -32,8 +32,12 @@ $('#editButton').click(function(){
      window.location.href = "edit_menu.html";
 });
 $('#deleteButton').click(function(){
-	//implement delete functionality
-     window.location.href = "delete_menu.html";
+     if (confirm("Do you want to delete")){
+		 //implement delete functionality
+		 window.location.href = "delete_menu.html";
+	 } else {
+		 return false;		 
+	 }
 });
 
 $('#addButton').click(function moveToAdd(){
