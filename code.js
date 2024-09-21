@@ -92,7 +92,7 @@ function readCookie()
 function doSearch() {
     let name = document.getElementById("firstname").value;
 
-    let tmp={name:name, userId:1};
+    let tmp={name:name, userId:userID};
     console.log(userID);
 
     let jsonPayload = JSON.stringify(tmp);
@@ -103,10 +103,9 @@ function doSearch() {
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
     try {
         xhr.onreadystatechange = function(){
-            console.log(77);
             if(this.readyState == 4 && this.status == 200) {
                 let jsonObject = JSON.parse(xhr.responseText);
-                console.log(jsonObject);
+                console.log(jsonObject.results);
                 return jsonObject;
             }
         };
@@ -192,42 +191,4 @@ function addContact() {
 
     }
 
-}
-
-function doDelete(){
-    userID = readCookie();
-    console.log("userID is " + userID);
-    let name = document.getElementById("Name");
-    let phone = document.getElementById("Phone");
-    let email = document.getElementById("Email");
-
-    console.log(userID);
-    let tmp = {Name:name, Phone:phone, Email:email, userID:userID};
-    let jsonPayload = JSON.stringify(tmp);
-
-    let url = urlBase + '/doDelete.' + extension;
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-
-    try {
-        xhr.onreadystatechange = function(){
-            if(this.readyState == 4 && this.status == 200) {
-                let jsonObject = JSON.parse(xhr.responseText);
-                //userID = jsonObject.id;
-
-                if(userID < 1){
-                    return;
-                }
-                //firstName = jsonObject.firstName;
-                //lastName = jsonObject.lastName;
-
-                saveCookie();
-            }
-        };
-        xhr.send(jsonPayload);
-    }
-    catch(err){
-
-    }
 }

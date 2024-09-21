@@ -66,6 +66,15 @@
      display: none;
 }
 
+#errorBoxAdd{
+     width:fit-content;
+     padding: 1%;
+     margin-bottom: 10px;
+     border-radius: 10px;
+     color: white;
+     display: none;
+}
+
 #errorBoxLogin{
      width:fit-content;
      padding: 1%;
@@ -89,7 +98,10 @@
 #searchButton{
      margin-left: 35%;
      width: 30%;
+     
 }
+
+
 
 #addButton{
      margin-left: 35%;
@@ -113,6 +125,19 @@
      margin-left: 35%;
      margin-top: 1%;
      width: 30%;
+}
+
+#searchTable{
+     display: none;
+}
+
+#contactAddSuccess{
+     width:fit-content;
+     padding: 1%;
+     margin-bottom: 10px;
+     border-radius: 10px;
+     color: white;
+     display: none;
 }
 
 #searchCmdButton{

@@ -1,43 +1,103 @@
-const urlBase = '';
-const extension = 'php'; 
+//const urlBase = '';
+//const extension = 'php'; 
 
 //insert javascript here for website
-
-
-
-
-
 
 
 //grabs the input from the username and password text boxes
 $('#loginButton').click(function checkCredentials(){
 
      var login = document.getElementById("username").value;
-	 var password = document.getElementById("password").value;
+	var password = document.getElementById("password").value;
      
      if(login === '' || password === '' ){
           $('#errorBoxLogin').html("Error: please fill in all boxes");
           $('#errorBoxLogin').show();
-     //the (else if) need to check to see if a user exists with the same login and password.
-     //if not run code otherwise move to else
-     /*
-     }else if(!(login === 'MattG') && !(password === 'COP4331')){
-          $('#errorBoxLogin').html("Error: Username and Password incorrect");
-          $('#errorBoxLogin').show();
-     */
      }else{
           //add function to login to contact manager
-		  window.location.href = "main_menu.html";
+	     //window.location.href = "main_menu.html";
+          $('#errorBoxLogin').html("Error: Username and Password incorrect");
+          $('#errorBoxLogin').show();
      }
      
 });
 
+//these fix the extending buttons in the main_menu.html
 $('#searchButton').click(function moveToSearch(){
      window.location.href = "search_menu.html";
 });
 
+$('#editButton').click(function(){
+	//implement edit functionality
+     window.location.href = "edit_menu.html";
+});
+
+$('#deleteButton').click(function(){
+     if (confirm("Do you want to delete")){
+		 //implement delete functionality
+		 window.location.href = "delete_menu.html";
+	 } else {
+		 return false;		 
+	 }
+});
+
 $('#addButton').click(function moveToAdd(){
      window.location.href = "add_menu.html";
+});
+
+//shows the table after pressing the find button in "search_menu.html"
+$('#searchCmdButton').click(function(){
+     $('#searchTable').show();
+});
+
+$('#addCmdButton').click(function(){
+     var name = document.getElementById("addName").value;
+     var phone = document.getElementById("addPhone").value;
+     var email = document.getElementById("addEmail").value;
+     if(name === '' || phone === '' || email === ''){
+          $('#errorBoxAdd').html("Error: please fill in all boxes");
+          $('#errorBoxAdd').show();
+          $('#contactAddSuccess').hide();
+     }else{
+          document.getElementById("addName").value = "";
+          document.getElementById("addPhone").value = "";
+          document.getElementById("addEmail").value = "";
+          $('#contactAddSuccess').html("Contact has been added");
+          $('#contactAddSuccess').show();
+          $('#errorBoxAdd').hide();
+
+     }
+     
+});
+
+$('#editCmdButton').click(function(){
+     var name = document.getElementById("editName").value;
+     var phone = document.getElementById("editPhone").value;
+     var email = document.getElementById("editEmail").value;
+     if(name === '' || phone === '' || email === ''){
+          $('#errorBoxEdit').html("Error: please fill in all boxes");
+          $('#errorBoxEdit').show();
+          $('#contactEditSuccess').hide();
+     }else{
+          $('#contactEditSuccess').html("Contact has been updated");
+          $('#contactEditSuccess').show();
+          $('#errorBoxEdit').hide();
+
+     }
+     
+});
+
+//hides the success notification after user starts to input new contact info
+$('#addName').on("input", function(){
+     $('#contactAddSuccess').hide();
+});
+
+$('#addPhone').on("input", function(){
+     $('#contactAddSuccess').hide();
+});
+
+$('#addEmail').on("input", function(){
+     $('#contactAddSuccess').hide();
 });
 
 //checks if all boxes are filled out
@@ -81,3 +141,4 @@ $('#check-show').click(function(){
           $('#password-2').prop('type', 'password');
      }
  });
+
