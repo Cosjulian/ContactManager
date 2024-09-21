@@ -106,6 +106,68 @@ function doSearch() {
             if(this.readyState == 4 && this.status == 200) {
                 let jsonObject = JSON.parse(xhr.responseText);
                 console.log(jsonObject.results);
+                var resultsDiv = document.getElementById('results');
+                resultsDiv.innerHTML = '';
+
+                if(jsonObject.results.length > 0) {
+                    tableHeader.style.display = "table-row";
+                    jsonObject.results.forEach(function(contact){
+
+                        var row = document.createElement('tr');
+
+                        var nameCell = document.createElement('td');
+                        nameCell.textContent = contact.Name.Name;
+                        row.appendChild(nameCell);
+                        
+                        var phoneCell = document.createElement('td');
+                        phoneCell.textContent = contact.Name.Phone;
+                        row.appendChild(phoneCell);
+
+                        var emailCell = document.createElement('td');
+                        emailCell.textContent = contact.Name.Email;
+                        row.appendChild(emailCell);
+
+                        var actionCell = document.createElement('td');
+
+                        var editButton = document.createElement('button');
+                        editButton.textContent = 'Edit';
+                        editButton.onclick = function () {
+                            window.location.href = "edit_menu.html";
+                        };
+
+                        actionCell.appendChild(editButton);
+
+                        var deleteButton = document.createElement('button');
+                        deleteButton.textContent = 'Delete';
+                        
+                        actionCell.appendChild(deleteButton);
+                        row.appendChild(actionCell);
+                        resultsDiv.appendChild(row);
+                        
+                        //OLD VERSION FOR REFERENCE DOES NOT WORK
+                        // var contactDiv = document.createElement('div');
+                        // contactDiv.textContent = 'Name: ' + contact.Name + ', Phone: ' + contact.Phone + ', Email: ' + contact.email;
+
+                        // var editButton = document.createElement('button');
+                        // editButton.textContent = 'Edit';
+                        // editButton.onclick = function() {
+                        //     //editContact(contact.id);
+                        // };
+                        // contactDiv.appendChild(editButton);
+
+                        // var deleteButton = document.createElement('button');
+                        // deleteButton.textContent = 'Delete';
+                        // deleteButton.onclick = function() {
+                        //     //doDelete(contact.id);
+                        // };
+                        // contactDiv.appendChild(deleteButton);
+
+                        // resultsDiv.appendChild(contactDiv);
+                });
+        }
+        else {
+            resultsDiv.textContent = "No contacts found.";
+        }
                 return jsonObject;
             }
         };
@@ -113,7 +175,7 @@ function doSearch() {
         xhr.send(jsonPayload);
     }
     catch {
-
+        console.error('Error:', erorr);
     }
 }
 
