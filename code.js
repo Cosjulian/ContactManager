@@ -91,7 +91,7 @@ function readCookie()
 
 function doSearch() {
     let name = document.getElementById("firstname").value;
-
+    userID = readCookie();
     let tmp={name:name, userId:userID};
     console.log(userID);
 
@@ -110,7 +110,32 @@ function doSearch() {
                 resultsDiv.innerHTML = '';
 
                 if(jsonObject.results.length > 0) {
-                    tableHeader.style.display = "table-row";
+			tableHeader.style.display = "table-row";
+					var header = document.createElement('tr');
+					
+					var nameHeader = document.createElement('th')
+					nameHeader.textContent = "Name";
+                    header.appendChild(nameHeader);
+					
+					var phoneHeader = document.createElement('th')
+					phoneHeader.textContent = "Phone";
+                    header.appendChild(phoneHeader);
+					
+					var emailHeader = document.createElement('th')
+					emailHeader.textContent = "Email";
+                    header.appendChild(emailHeader);
+					
+					var editHeader = document.createElement('th')
+					editHeader.textContent = "Edit";
+                    header.appendChild(editHeader);
+					
+					var deleteHeader = document.createElement('th')
+					deleteHeader.textContent = "Delete";
+                    header.appendChild(deleteHeader);
+					
+					
+					resultsDiv.appendChild(header);
+					
                     jsonObject.results.forEach(function(contact){
 
                         var row = document.createElement('tr');
@@ -127,24 +152,28 @@ function doSearch() {
                         emailCell.textContent = contact.Name.Email;
                         row.appendChild(emailCell);
 
-                        var actionCell = document.createElement('td');
+                        var editCell = document.createElement('td');
 
                         var editButton = document.createElement('button');
                         editButton.textContent = 'Edit';
+						editButton.className = 'btn btn-large btn-warning'
                         editButton.onclick = function () {
                             window.location.href = "edit_menu.html";
                         };
 
-                        actionCell.appendChild(editButton);
+                        editCell.appendChild(editButton);
+						row.appendChild(editCell);
+						
+						var deleteCell = document.createElement('td');
 
                         var deleteButton = document.createElement('button');
                         deleteButton.textContent = 'Delete';
+						deleteButton.className = 'btn btn-large btn-danger'
                         
-                        actionCell.appendChild(deleteButton);
-                        row.appendChild(actionCell);
+                        deleteCell.appendChild(deleteButton);
+                        row.appendChild(deleteCell);
                         resultsDiv.appendChild(row);
                         
-                        //OLD VERSION FOR REFERENCE DOES NOT WORK
                         // var contactDiv = document.createElement('div');
                         // contactDiv.textContent = 'Name: ' + contact.Name + ', Phone: ' + contact.Phone + ', Email: ' + contact.email;
 
@@ -169,6 +198,9 @@ function doSearch() {
             resultsDiv.textContent = "No contacts found.";
         }
                 return jsonObject;
+
+
+
             }
         };
         console.log(jsonPayload);
