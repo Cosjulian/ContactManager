@@ -1,8 +1,8 @@
 <?php
     $inData = getRequestInfo();
 	
-    $phone = $inData["phone"];
-	$userId = $inData["userId"];
+    $phone = $inData["Phone"];
+	$userId = $inData["userID"];
 
 	$conn = new mysqli("localhost", "Group24WebServer", "Group24Server", "contact_manager");
 	if ($conn->connect_error) 

@@ -12,8 +12,6 @@ function doLogin(){
 
     let login = document.getElementById("username").value;
     let password = document.getElementById("password").value;
-    console.log("TEST");
-    console.log(login + password);
     let tmp = {login:login, password:password};
 
     let jsonPayload = JSON.stringify(tmp);
@@ -29,9 +27,17 @@ function doLogin(){
                 let jsonObject = JSON.parse(xhr.responseText);
                 userID = jsonObject.id;
 
-                if(userID < 1){
+                if(login === '' || password === ''){
+                    $('#errorBoxLogin').html("Error: please fill in all boxes");
+                    $('#errorBoxLogin').show();
                     return;
                 }
+                else if(userID < 1){
+                    $('#errorBoxLogin').html("Error: Incorrect Username or Password");
+                    $('#errorBoxLogin').show();
+                    return;
+                }
+                
                 firstName = jsonObject.firstName;
                 lastName = jsonObject.lastName;
 
@@ -93,7 +99,7 @@ function doSearch() {
     let name = document.getElementById("firstname").value;
     userID = readCookie();
     let tmp={name:name, userId:userID};
-    console.log(userID);
+    
 
     let jsonPayload = JSON.stringify(tmp);
 
@@ -105,7 +111,7 @@ function doSearch() {
         xhr.onreadystatechange = function(){
             if(this.readyState == 4 && this.status == 200) {
                 let jsonObject = JSON.parse(xhr.responseText);
-                console.log(jsonObject.results);
+                
                 var resultsDiv = document.getElementById('results');
                 resultsDiv.innerHTML = '';
 
@@ -158,6 +164,11 @@ function doSearch() {
                         editButton.textContent = 'Edit';
 						editButton.className = 'btn btn-large btn-warning'
                         editButton.onclick = function () {
+                            localStorage.setItem('contactId', contact.Name.ID);
+                            localStorage.setItem('contactName', contact.Name.Name);
+                            localStorage.setItem('contactPhone', contact.Name.Phone);
+                            localStorage.setItem('contactEmail', contact.Name.Email);
+
                             window.location.href = "edit_menu.html";
                         };
 
@@ -170,40 +181,30 @@ function doSearch() {
                         deleteButton.textContent = 'Delete';
 						deleteButton.className = 'btn btn-large btn-danger'
                         
+                        deleteButton.onclick = function () {
+                            localStorage.setItem('contactId', contact.Name.ID);
+                            localStorage.setItem('contactName', contact.Name.Name);
+                            localStorage.setItem('contactPhone', contact.Name.Phone);
+                            localStorage.setItem('contactEmail', contact.Name.Email);
+                            
+                            if(confirm("Do you want to delete?")) {
+                            doDelete();
+                            row.style.display = "none";
+                            }
+                            };
+
                         deleteCell.appendChild(deleteButton);
                         row.appendChild(deleteCell);
                         resultsDiv.appendChild(row);
-                        
-                        // var contactDiv = document.createElement('div');
-                        // contactDiv.textContent = 'Name: ' + contact.Name + ', Phone: ' + contact.Phone + ', Email: ' + contact.email;
-
-                        // var editButton = document.createElement('button');
-                        // editButton.textContent = 'Edit';
-                        // editButton.onclick = function() {
-                        //     //editContact(contact.id);
-                        // };
-                        // contactDiv.appendChild(editButton);
-
-                        // var deleteButton = document.createElement('button');
-                        // deleteButton.textContent = 'Delete';
-                        // deleteButton.onclick = function() {
-                        //     //doDelete(contact.id);
-                        // };
-                        // contactDiv.appendChild(deleteButton);
-
-                        // resultsDiv.appendChild(contactDiv);
                 });
         }
         else {
             resultsDiv.textContent = "No contacts found.";
         }
                 return jsonObject;
-
-
-
             }
         };
-        console.log(jsonPayload);
+        
         xhr.send(jsonPayload);
     }
     catch {
@@ -227,20 +228,11 @@ function doSignUp() {
     try {
         xhr.onreadystatechange = function(){
             if(this.readyState == 4 && this.status == 200) {
-                let jsonObject = JSON.parse(xhr.responseText);
-                userID = jsonObject.id;
 
-                if(userID < 1){
-                    return;
-                }
-                //firstName = jsonObject.firstName;
-                //lastName = jsonObject.lastName;
+            window.location.href = "index.html";
 
-                saveCookie();
-
-                window.location.href = "index.html";
             }
-        };
+            };
         xhr.send(jsonPayload);
     }
     catch(err){
@@ -252,11 +244,16 @@ function doSignUp() {
 function addContact() {
     userID = readCookie();
     console.log("userID is " + userID);
-    let name = document.getElementById("addName");
-    let phone = document.getElementById("addPhone");
-    let email = document.getElementById("addEmail");
+    let name = document.getElementById("addName").value;
+    let phone = document.getElementById("addPhone").value;
+    let email = document.getElementById("addEmail").value;
 
-    console.log(userID);
+    if(name === '' || phone === '' || email === '') {
+        $('#errorBoxAdd').html("Error: please fill in all booxes");
+        $('#errorBoxAdd').show();
+        return;
+        }
+
     let tmp = {Name:name, Phone:phone, Email:email, userID:userID};
     let jsonPayload = JSON.stringify(tmp);
     
@@ -268,14 +265,12 @@ function addContact() {
         xhr.onreadystatechange = function(){
             if(this.readyState == 4 && this.status == 200) {
                 let jsonObject = JSON.parse(xhr.responseText);
-                //userID = jsonObject.id;
+                
 
                 if(userID < 1){
                     return;
                 }
-                //firstName = jsonObject.firstName;
-                //lastName = jsonObject.lastName;
-
+               
                 saveCookie();
             }
         };
@@ -284,5 +279,61 @@ function addContact() {
     catch(err){
 
     }
+}
 
+function editContact() {
+    let name = document.getElementById("editName").value;
+    let phone = document.getElementById("editPhone").value;
+    let email = document.getElementById("editEmail").value;
+
+    let tmp = {Name:name, Phone:phone, Email:email, contactID:localStorage.getItem('contactId')};
+    let jsonPayload = JSON.stringify(tmp);
+
+    let url = urlBase + '/editContact.' + extension;
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    try {
+        xhr.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status == 200) {
+                let jsonObject = JSON.parse(xhr.responseText);
+                window.location.href = "search_menu.html";
+
+            }
+        };
+        xhr.send(jsonPayload);
+    }
+    catch(err){
+
+    }
+
+}
+
+function doDelete(){
+    userID = readCookie();
+    let name = localStorage.getItem('contactName');
+    let phone = localStorage.getItem('contactPhone');
+    let email = localStorage.getItem('contactEmail');
+    
+    let tmp = {Name:name, Phone:phone, Email:email, userID:userID};
+    let jsonPayload = JSON.stringify(tmp);
+
+    let url = urlBase + '/deleteContact.' + extension;
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    try {
+        xhr.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status == 200) {
+                let jsonObject = JSON.parse(xhr.responseText);
+    
+    
+            }
+        };
+    xhr.send(jsonPayload);
+    }
+    catch {
+    
+    }
+    
 }

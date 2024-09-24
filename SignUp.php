@@ -12,8 +12,8 @@
     if($conn->connect_error){
         returnWithError($conn->connect_error);
     } else {
-        $stmt = $conn->prepare("insert into Users(FirstName,LastName,Login,Password)
-        VALUES firstName=? AND lastName=? AND Login=? AND Password=?");
+        $stmt = $conn->prepare("INSERT into Users(FirstName,LastName,Login,Password)
+        VALUES (?, ?, ?, ?)");
         $stmt->bind_param("ssss", $inData["firstName"], $inData["lastName"], 
         $inData["userName"], $inData["password"]);
         $stmt->execute();
